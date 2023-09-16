@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Manipulation </title>
+</head>
+<body>
+    <h1>Dynamic List Manipulation</h1>
+    
+    <ul id="myList">
+        <li>List item 1</li>
+        <li>List item 2</li>
+        <li>List item 3</li>
+    </ul>
+    
+    <button id="addItemButton">Add Item</button>
+
+    <script>
+        // Function to add a new list item
+        function addListItem() {
+            const myList = document.getElementById("myList");
+            const newItem = document.createElement("li");
+            const itemCount = myList.getElementsByTagName("li").length + 1;
+            newItem.textContent = "List item " + itemCount;
+            
+            // Add click event listener to remove the item when clicked
+            newItem.addEventListener("click", function() {
+                this.remove();
+            });
+
+            myList.appendChild(newItem);
+        }
+
+        // Add a click event listener to the button
+        const addItemButton = document.getElementById("addItemButton");
+        addItemButton.addEventListener("click", addListItem);
+    </script>
+</body>
+</html>

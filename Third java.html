@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Interactivity</title>
+</head>
+<body>
+    <h1>Welcome to my Interactive WebpageS!</h1>
+    
+    <p id="dynamic-text">This is a text Click the button to change it!</p>
+    
+    <button onclick="changeText()">Change Text</button>
+    
+    <h2>Form Validation</h2>
+    <form onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        onload: alert("Alert Here!");
+        function changeText() {
+            document.getElementById("dynamic-text").innerHTML = "Text changed!";
+        }
+        function validateForm() {
+            var nameInput = document.getElementById("name");
+            if (nameInput.value === "") {
+                alert("Please enter your name.");
+                return false; 
+            }
+            return true; 
+        }
+    </script>
+</body>
+</html>

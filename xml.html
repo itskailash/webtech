@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <title>XML Parsing Example</title>
+</head>
+<body>
+    <h1>Library Books</h1>
+    <ul id="book-list"></ul>
+
+    <script>
+        function loadXML() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    displayBooks(this.responseXML);
+                }
+            };
+            xhttp.open("GET", "books.xml", true);
+            xhttp.send();
+        }
+
+        function displayBooks(xml) {
+            var books = xml.getElementsByTagName("book");
+            var bookList = document.getElementById("book-list");
+
+            for (var i = 0; i < books.length; i++) {
+                var title = books[i].getElementsByTagName("title")[0].textContent;
+                var author = books[i].getElementsByTagName("author")[0].textContent;
+                var genre = books[i].getElementsByTagName("genre")[0].textContent;
+                var price = books[i].getElementsByTagName("price")[0].textContent;
+
+                var listItem = document.createElement("li");
+                listItem.innerHTML = "<strong>Title:</strong> " + title +
+                                     "<br><strong>Author:</strong> " + author +
+                                     "<br><strong>Genre:</strong> " + genre +
+                                     "<br><strong>Price:</strong> $" + price;
+                bookList.appendChild(listItem);
+            }
+        }
+
+        // Call the loadXML function to load and parse the XML file
+        loadXML();
+    </script>
+</body>
+</html>
